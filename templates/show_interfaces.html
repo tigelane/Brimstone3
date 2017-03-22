@@ -1,0 +1,30 @@
+<body>
+    <div class="container">
+    <h3 class="ReportTitle">Switch Interfaces</h3>
+<br>
+<table  id="example" class="display" class="BottomTable">        
+        <thead>
+        <tr>
+            <th>Interface</th>
+            <th>Type</th>
+            <th>Admin</th>
+            <th>Oper</th>
+            <th>Speed</th>
+            <th>MTU</th>
+            <th>Usage</th>
+        </tr>
+        </thead>
+
+        {% for record in records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+            <td>{{ record[5] }}</td>
+            <td>{{ record[6] }}</td>
+        </tr>
+        {% endfor %}
+</table>
+</div>

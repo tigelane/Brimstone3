@@ -1,0 +1,89 @@
+<body style="color:#E4E500">
+<center>
+    <br><br>
+    <!--<table style="color:#E4E500" border="1" cellpadding="10">-->
+    <table class="SimpleTable">
+        <tr>
+            <td valign="top">
+                <table style="color:#E4E500" border="1" cellpadding="10">
+                    <th><h2>Consumers</h2></th>
+                    <th><h2>Provided Contracts</h2></th>
+                    </thead>
+                    {% for contract in EPG.provided_contracts %}
+                    <tr>
+                        <td valign="top">
+                            <table>
+                                {% for epg in EPG.provided_contracts[contract] %}
+                                <center><h3>{{ epg }}</h3>
+
+                                    {% for endpoint in EPG.consumer_endpoints[epg] %}
+                                    {{ endpoint }}<br>
+                                    {% endfor %}
+
+                                </center>
+                                <br>
+                                {% endfor %}
+                            </table>
+                        </td>
+                        <td valign="top">
+                            <center><h3>{{ contract }}</h3>
+
+
+                                <table>
+                                    {% for filters in CONTRACTS.filters[contract] %}
+                                    {{ filters }}<br>
+                                    {% endfor %}
+                                </table>
+                            </center>
+                        </td>
+                    </tr>
+
+
+                    {% endfor %}
+                </table>
+
+            </td>
+            </td>
+            <td><h3>{{ EPG.parent_tenant }}/{{ EPG.parent_apn }}/{{ EPG.name }}</h3></td>
+            <td valign="top">
+                <table style="color:#E4E500" border="1" cellpadding="10">
+                    <thead>
+                    <th><h2>Consumed Contracts</h2></th>
+                    <th><h2>Providers</h2></th>
+                    </thead>
+                    {% for contract in EPG.consumed_contracts %}
+                    <tr>
+                        <td valign="top">
+                            <center><h3>{{ contract }}</h3>
+
+                                <table>
+                                    {% for filters in CONTRACTS.filters[contract] %}
+                                    {{ filters }}<br>
+                                    {% endfor %}
+                                </table>
+
+                            </center>
+                        </td>
+                        <td valign="middle">
+                            <table valign="middle">
+                                {% for epg in EPG.consumed_contracts[contract] %}
+                                <center><h3>{{ epg }}</h3>
+
+                                    {% for endpoint in EPG.provider_endpoints[epg] %}
+                                    {{ endpoint }}<br>
+                                    {% endfor %}
+
+                                </center>
+                                <br>
+                                {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </td>
+        </tr>
+    </table>
+</center>
+</body>

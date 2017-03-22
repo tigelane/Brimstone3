@@ -1,0 +1,42 @@
+<body>
+<div class="container" >
+    <h2 class="ReportTitle">Search for a route</h2>
+    <center>
+    <FORM value="form" action="search_routes" method="post">
+
+    <label for="All">Shared L3 Outs</label>
+    <INPUT type="radio" name="scope" label="" value="All">
+    <label for="Local">Local VRF</label>
+    <INPUT type="radio" name="scope" label="Local VRF" value="Local" checked="checked">
+    </p>
+    <table  class="SimpleTable">
+        <thead>
+        <tr>
+            <th>Tenant</th>
+            <th>VRF</th>
+            <th>Select</th>
+        </tr>
+        </thead>
+
+        {% for record in records %}
+        <tr><td>{{ record[0] }}</td>
+        <td>{{ record[1] }}</td>
+        <td align="'center"><INPUT type="radio" name="vrf" value='{{ record[0] }}:{{ record[1] }}'></td></tr>
+        {% endfor %}
+        </table>
+
+        <br>
+        <!--<div class="col-xs-4 col-md-offset-4">-->
+        <div class="col-md-4 col-md-offset-4" >
+        <LABEL for="search">Search for: </LABEL>
+        <br>
+        <!--<INPUT type="search" name="text"><BR>-->
+        <input type="text" name="text" class="form-control input-lg" placeholder="IP or Network" required autofocus><br>
+        <button class="btn btn-lg btn-block btn-primary" type="submit">Submit</button><br><button class="btn btn-lg btn-block" type="reset">Reset</button>
+            </div>
+    </FORM>
+
+    </center>
+    </div>
+</body>
+</html>

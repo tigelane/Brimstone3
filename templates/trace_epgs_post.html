@@ -1,0 +1,22 @@
+<body style="color:#E4E500">
+<center>
+    <br><br>
+    <table style="color:#E4E500" border="1" cellpadding="10">
+    <table class="SimpleTable">
+        <tr>
+            <td valign="top">
+                <table style="color:#E4E500" border="1" cellpadding="10">
+                    <th><h3>Consumer EPG</h3></th>
+                    <th><h3>Contracts</h3></th>
+                    <th><h3>Provider EPG</h3></th>
+                    </thead>
+                    {% for record in records %}
+                    <tr>
+                        <td>{{ record[0] }}<br>Scope:{{ record[1] }}<br>pcTag:{{ record[2] }}</td>
+                        <td>{{ record[3] }}</td>
+                        <td>{{ record[4] }}<br>Scope:{{ record[5] }}<br>pcTag:{{ record[6] }}</td>
+                    </tr>
+                    {% endfor %}
+    </table><br>
+</center>
+</body>

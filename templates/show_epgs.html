@@ -1,0 +1,33 @@
+<body>
+    <div class="container">
+    <h3 class="ReportTitle">Endpoint Groups</h3>
+
+<table id="example" class="display"  class="BottomTable">
+        <thead>
+            <tr>
+            <th>Tenant</th>
+            <th>Application Profile</th>
+            <th>EPG</th>
+            </tr>
+        </thead>
+ 
+        <tfoot>
+            <tr>
+            <th>Tenant</th>
+            <th>Application Profile</th>
+            <th>EPG</th>
+            </tr>
+        </tfoot>
+ 
+        <tbody>
+        {% for record in records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+</table>
+</div>

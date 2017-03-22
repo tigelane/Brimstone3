@@ -1,0 +1,42 @@
+<body>
+    <h2 class="ReportTitle">Search for an Endpoint</h2>
+    <center>
+    <h3 class="ReportTitle">You can enter anything from the following example as a search:</h3>
+    <pre>
+    MACADDRESS          IPADDRESS         INTERFACE       ENCAP       TENANT     APP PROFILE        EPG
+    -----------------   ---------------   --------------  ---------   ------     ---------------    ---
+    00:50:56:15:7C:44   172.6.101.12      eth 1/101/1/4   vlan-2120   common     Simple_Two-Tier    WWW
+    </pre>
+
+
+    <form value="form" action="search_host" method="post">
+    <table  class="SimpleTable">
+       <thead>
+        <tr>
+            <th>Filter</th>
+            <th>Search</th>
+        </tr>
+        </thead>
+
+    <tr>
+        <td>
+        <INPUT type="radio" name="texttype" value='any' checked="checked"> Any Match<br>
+        <INPUT type="radio" name="texttype" value='macAddress'> MAC Address<BR>
+        <INPUT type="radio" name="texttype" value='ipAddress'> IP Address<BR>
+        <INPUT type="radio" name="texttype" value='interface'> Interface<BR>
+        <INPUT type="radio" name="texttype" value='encap'> Encap<BR>
+        <INPUT type="radio" name="texttype" value='tenant'> Tenant<BR>
+        <INPUT type="radio" name="texttype" value='anp'> ANP<BR>
+        <INPUT type="radio" name="texttype" value='epg'> EPG<BR>
+        </td>
+
+        <td>
+            <INPUT type="search" name="text">
+            <INPUT type="submit" value="Send">
+            <INPUT type="reset">
+        </td>
+    </tr>
+
+        </table>
+    </form>
+    </center>

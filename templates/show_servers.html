@@ -1,0 +1,30 @@
+<body>
+    <div class="container">
+    <h3 class="ReportTitle">Attached System Endpoints (Servers)</h3>
+<br>
+<table  id="example" class="display" class="BottomTable">        
+        <thead>
+        <tr>
+            <th>MAC</th>
+            <th>IP Address</th>
+            <th>Interface Name</th>
+            <th>Encapsulation</th>
+            <th>Tenant</th>
+            <th>Application Profile</th>
+            <th>EPG</th>
+        </tr>
+        </thead>
+
+        {% for record in records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+            <td>{{ record[5] }}</td>
+            <td>{{ record[6] }}</td>
+        </tr>
+        {% endfor %}
+</table>
+</div>

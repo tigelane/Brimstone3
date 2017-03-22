@@ -1,0 +1,68 @@
+<body>
+    <div class="container">
+    <h3 class="ReportTitle">{{title}}</h3>
+
+<table id="example" class="display"  class="BottomTable">
+        <thead>
+            <tr>
+
+            <th>Assigned Person</th>
+            <th>Hiring Company</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Pay Type</th>
+            <th>Estimated Pay</th>
+            <th>Gadget Required</th>
+            <th>Location</th>
+            <th>Status</th>
+
+            <th>Name</th>
+
+            <th>Pay Rate</th>
+            <th>Notes</th>
+            </tr>
+        </thead>
+ 
+        <tfoot>
+            <tr>
+
+            <th>Assigned Person</th>
+            <th>Hiring Company</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Pay Type</th>
+            <th>Estimated Pay</th>
+            <th>Gadget Required</th>
+            <th>Location</th>
+            <th>Status</th>
+
+            <th>Name</th>
+
+            <th>Pay Rate</th>
+            <th>Notes</th>
+            </tr>
+        </tfoot>
+ 
+        <tbody>
+        {% for record in records %}
+        <tr>
+
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+            <td>{{ record[5] }}</td>
+            <td>{{ record[6] }}</td>
+            <td>{{ record[7] }}</td>
+            <td>{{ record[8] }}</td>
+            <td>{{ record[9] }}</td>
+
+            <td>{{ record[11] }}</td>
+
+            <td>{{ record[14] }}</td>
+            <td>{{ record[15] }}</td>
+         </tr>
+        {% endfor %}
+        </tbody>
+</table>
+</div>

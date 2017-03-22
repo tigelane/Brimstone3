@@ -1,0 +1,21 @@
+<body>
+    <div class="container">
+    <h3 class="ReportTitle">List of system Nodes</h3>
+<br>
+<table  id="example" class="display" class="BottomTable">        
+        <thead>
+        <tr>
+            <th>All Fabric Switches and Attached External Switches</th>
+        </tr>
+        </thead>
+        </tr>
+        
+        {% for all_node in all_nodes %}
+        <tr>
+            <td>{{ all_node }}</td>
+        </tr>
+
+        {% endfor %}
+        </tr>
+    </table>
+</div>

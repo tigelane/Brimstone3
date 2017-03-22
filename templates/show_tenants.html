@@ -1,0 +1,17 @@
+<body>
+    <div class="container">
+    <h3 class="ReportTitle">List of Tenant names</h3>
+<br>
+<table  id="example" class="display" class="BottomTable">        
+        <thead>
+        <tr>
+            <th>Tenants</th>
+        </tr>
+        </thead>
+        {% for record in records %}
+        <tr>
+            <td>{{ record }}</td>
+        </tr>
+        {% endfor %}
+</table>
+</div>

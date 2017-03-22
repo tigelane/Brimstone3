@@ -1,0 +1,22 @@
+<body style="color:#E4E500">
+<center>
+    <h2>Your Search Results (Contract)</h2>
+    <h2>Query: {{ text }}</h2>
+
+    <table style="color:#E4E500" border="1">
+        <thead>
+        <tr>
+            <th>Tenant</th>
+            <th>Contract</th>
+            <th>Filter</th>
+        </tr>
+        </thead>
+        {% for record in records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            td>{{ record[2] }}<
+        </tr>
+        {% endfor %}
+        </tr></table>
+</body></html>

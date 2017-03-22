@@ -1,0 +1,24 @@
+<body>
+    <div class="container col-md-8 col-md-offset-2">
+        <h3 class="ReportTitle">Application Health Summary</H3>
+    <br>
+
+<table  id="example" class="display" class="BottomTable table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Tenant</th>
+            <th class="text-center">Application</th>
+            <th class="text-center">Health Score</th>
+        </tr>
+        </thead>
+
+        {% for record in records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <!-- Custom color dependant on the python code -->
+            <td class="ReportCenter"><font color="{{ record[3] }}">{{ record[2] }}</font></td>
+        </tr>
+        {% endfor %}
+</table>
+</div>

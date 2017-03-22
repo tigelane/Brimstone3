@@ -1,0 +1,30 @@
+<body style="color:#E4E500">
+<center>
+    <h2>Your Search Results (Endpoint)</h2>
+    <h2>Query: {{ text }}</h2>
+    <table style="color:#E4E500" border="1">
+        <thead>
+        <tr>
+            <th>MAC</th>
+            <th>IP Address</th>
+            <th>Interface Name</th>
+            <th>Encapsulation</th>
+            <th>Tenant</th>
+            <th>Application Profile</th>
+            <th>EPG</th>
+        </tr>
+        </thead>
+
+        {% for record in records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+            <td>{{ record[5] }}</td>
+            <td>{{ record[6] }}</td>
+        </tr>
+        {% endfor %}
+        <body>
+        </html>

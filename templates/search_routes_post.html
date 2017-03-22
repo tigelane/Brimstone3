@@ -1,0 +1,18 @@
+<center>
+    <BODY style="color:#E4E500"><H1>Route for {{ endpoint }}</H1>
+    <h2>
+    <table class="SimpleTable">
+        {% for best_route in best_routes_text %}
+        <!--Node {{ best_route[1] }}:-->
+        <!--{{ best_route[2] }}-->
+        <!--via {{ best_route[3] }}%{{ best_route[7] }},-->
+        <!--{{ best_route[4] }},-->
+        <!--{{ best_route[5] }},-->
+        <!--{{ best_route[6] }}<br>-->
+        <tr><td>{{ best_route }}</td></tr>
+        {% endfor %}
+
+    </table>
+    </h2>
+    </body>
+    </html>

@@ -1,0 +1,30 @@
+<body>
+
+          <script type="text/javascript">
+               $(document).ready(function() {
+               $('.selectpicker').selectpicker();
+              });
+          </script>
+
+    <div class="container" class="col-xs-6 col-md-4">
+    <h3 class="ReportTitle">CLI Command</h3>
+
+<FORM value="form" action="command" method="post">
+<div class="col-md-4 col-md-offset-4" >
+
+<input type="text" class="form-control" id="cmd" name="cmd" placeholder="CLI Command">
+    <br>
+    <select class="selectpicker form-control" id="leaf" name="leaf"  title="Choose Leaf" dropup>
+    {% for leaf in leaves %}
+  <option>{{ leaf }}</option>
+  {% endfor %}
+        </select>
+    <br><br>
+<button class="btn btn-lg btn-block btn-primary" class="form-control" type="submit" name="submit" value="submit">Submit</button>
+<button class="btn btn-lg btn-block" class="form-control" type="submit" name="submit" value="logs">View Logs</button>
+    </div>
+</form>
+</div>
+
+
+</body>

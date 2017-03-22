@@ -1,0 +1,44 @@
+<body>
+    <div class="container">
+    <h3 class="ReportTitle">{{title}}</h3>
+
+<table id="example" class="display"  class="BottomTable">
+        <thead>
+            <tr>
+            <th></th>
+            <th>Hiring Company</th>
+            <th>Truck Type Needed</th>
+            <th>Start Date</th>
+            <th>Location</th>
+            <th>Estimated Pay</th>
+            </tr>
+        </thead>
+ 
+        <tfoot>
+            <tr>
+            <th></th>
+            <th>Hiring Company</th>
+            <th>Truck Type Needed</th>
+            <th>Start Date</th>
+            <th>Location</th>
+            <th>Estimated Pay</th>
+            </tr>
+        </tfoot>
+ 
+        <tbody>
+        {% for record in records %}
+        <tr>
+            <td>
+                <form method="get" action="/edit_job/{{ record[0] }}/">
+                <button type="submit">Edit</button>
+                </form>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[7] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[8] }}</td>
+            <td>{{ record[4] }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+</table>
+</div>

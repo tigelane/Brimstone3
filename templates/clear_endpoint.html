@@ -1,0 +1,31 @@
+<body style="color:#E4E500">
+<center>
+    <br><br>
+
+    <h2>WARNING: Clicking will delete the endpoint below from the fabric.</h2><br>
+    <h1>{{ EPG.parent_tenant }}/{{ EPG.parent_apn }}/{{ EPG.name }}/{{ EPG.endpoint }}</h1><br>
+    <FORM value="form" action="clear_endpoint_post" method="post">
+        <TABLE>
+            <br>
+            <TR>
+                <TD>TENANT:</TD>
+                <TD><INPUT type="text" name="endpoint_tenant" value="{{ EPG.parent_tenant }}"/></TD>
+            </TR>
+            <TR>
+                <TD>VRF:</TD>
+                <TD><INPUT type="text" name="endpoint_vrf" value="{{ EPG.endpoint_vrf }}"/></TD>
+            </TR>
+            <TR>
+                <TD>ENDPOINT:</TD>
+                <TD><INPUT type="text" name="endpoint" value="{{ EPG.endpoint }}"/></TD>
+            </TR>
+            <TR>
+                <TD>LEAF:</TD>
+                <TD><INPUT type="text" name="endpoint_node_oob" value="{{ EPG.endpoint_node_oob }}"/></TD>
+            </TR>
+
+        </TABLE>
+        <BR><INPUT type="submit" value="Clear Endpoint from Fabric">
+    </FORM>
+</center>
+</body>

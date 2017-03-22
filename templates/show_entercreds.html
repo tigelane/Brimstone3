@@ -1,0 +1,22 @@
+<body>
+<center>
+<br>
+<h2>{{ connection_status }}</h2>
+<h2>Enter new APIC Credentials</h2><pre>
+<form value="form" action="write_creds" method="post">
+<p>
+<LABEL for="host">IP Address or Hostname</LABEL>
+<INPUT type="text" name="host" value = "{{ apic_ip }}"><BR>
+<LABEL for="user">User ID</LABEL>
+<INPUT type="text" name="user"><BR>
+<LABEL for="pass">Password</LABEL>
+<INPUT type="password" name="password"><BR>
+<INPUT type="radio" name="proto" value=0>HTTP - 80<BR>
+<INPUT type="radio" name="proto" value=1 checked="checked">HTTPS - 443<BR>
+<br>
+<INPUT type="submit" value="Send"> <INPUT type="reset">
+</form>
+</p>
+</center>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<body>
+    <div class="container">
+    <h3 class="ReportTitle">Your Search Results (Contract)</h3>
+    <h3 class="ReportTitle">Query: {{ text }}</h3>
+
+<table  id="example" class="display" class="BottomTable">        
+        <thead>
+        <tr>
+            <th>Tenant</th>
+            <th>Contract</th>
+            <th>Filter</th>
+        </tr>
+        </thead>
+        {% for contract in CONTRACTS.names %}
+        <tr>
+            <td>{{ CONTRACTS.tenant[contract] }}</td>
+            <td>{{ contract }}</td>
+            <td>
+
+                {% for filters in CONTRACTS.filters[contract] %}
+                {{ filters }}</td>
+                {% endfor %}
+        </tr>
+        {% endfor %}
+        </tr>
+</table>
+</div>

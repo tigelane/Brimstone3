@@ -1,0 +1,57 @@
+<body>
+<script>
+
+
+$(document).ready(function() {
+    $('table.display').SimpleTable();
+} );
+
+
+</script>
+<div class="container col-md-8 col-md-offset-2">
+    <div class="row">
+        <h1 class="ReportTitle">Overall Fabric Health: <font color="{{ sys_health_color }}">{{ system_health }} </font>
+        </h1>
+        <h3 class="ReportTitle">Cluster Health Summary</H3>
+        <table id="example" class="table" class="SimpleTable table-sm table-striped" data-toggle="table">
+            <thead>
+            <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">State</th>
+                <th class="text-center">Health</th>
+            </tr>
+            </thead>
+            {% for node in cluster_nodes %}
+            <tr>
+                <td>{{ node[0] }}</td>
+                <td>{{ node[1] }}</td>
+                <!-- Custom color dependant on the python code -->
+                <td class="ReportCenter"><font color="{{ node[3] }}">{{ node[2] }}</font></td>
+            </tr>
+            {% endfor %}
+        </table></div>
+        <div class="row">
+            <br>
+        <h3 class="ReportTitle">Node Health Summary</H3>
+            <table id="example2" class="display" class="table table-striped table-sm" data-toggle="table">
+                <thead>
+                <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Role</th>
+                    <th class="text-center">Health Score</th>
+                </tr>
+                </thead>
+
+                {% for node in nodelist %}
+                <tr>
+                    <td>{{ node[0] }}</td>
+                    <td>{{ node[1] }}</td>
+                    <!-- Custom color dependant on the python code -->
+                    <td class="ReportCenter"><font color="{{ node[3] }}">{{ node[2] }}</font></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

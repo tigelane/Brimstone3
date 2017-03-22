@@ -1,0 +1,21 @@
+<body>
+    <div class="container">
+    <h3 class="ReportTitle">User VRFs</h3>
+    <br>
+
+ <table  id="example" class="display" class="BottomTable">        
+    <thead>
+        <tr>
+            <th>Tenant</th>
+            <th>VRF</th>
+        </tr>
+        </thead>
+
+        {% for record in records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+        </tr>
+        {% endfor %}
+</table>
+</div>
