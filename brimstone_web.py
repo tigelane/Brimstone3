@@ -191,23 +191,24 @@ def add_new_job():
     print formValues
     return redirect('/server_info', code=303)
 
-@app.route('/new_driver', methods=['GET'])
-def new_driver():
+@app.route('/new_person', methods=['GET'])
+def new_person():
     """
     Render entry page for a new job
     :return: html pages as rendered html
     """
 
     html = base_menu()
-    html += render_template('enter_new_driver.html')
+    html += render_template('enter_new_person.html')
     return html
 
-@app.route('/add_new_driver', methods=['POST'])
-def add_new_driver():
+@app.route('/add_new_person', methods=['POST'])
+def add_new_person():
     """
     Gather data from form post and post information to database
     :return: html pages as rendered html
     """
+
     if request.form["button"] == "cancel":
         return redirect('/server_info', code=303)
 
@@ -215,21 +216,21 @@ def add_new_driver():
     formValues["fname"] = request.form['fname']
     formValues["lname"] = request.form['lname']
     formValues["phone"] = request.form['phone']
-    formValues["ttype"] = request.form['ttype']
 
     #  Look for missing items and show an error screen if needed
     for k, v in formValues.iteritems():
         if v == "":
             return render_error_screen("You must specify all of the '*' values.")
 
-    # Add the rest to values that are optional
+    print (request.form)
 
+    # Add the rest to values that are optional
     formValues["contact"] = request.form['contact']
     formValues["email"] = request.form['email']
     formValues["notes"] = request.form['notes']
     # formValues[""] = request.form['']
     
-    print formValues
+    print (formValues)
     return redirect('/server_info', code=303)
 
 
