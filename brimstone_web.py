@@ -14,51 +14,6 @@ app_port = 5000
 
 app = Flask(__name__)
 
-def open_url(url):
-    try: 
-        result = requests.get(url)
-    except:
-        error = "Application Server Failure: Not able to communicate with Application Server at {0} ".format(app_addr)
-        return {'result':0, 'data':render_error_screen(error)}
-
-    if (result.status_code == 200):
-        decoded_json = json.loads(result.text)
-        if decoded_json['status']== 'FAIL':
-            error = "Database Failure: Response from Application Server: " + decoded_json['results']
-            return {'result':0, 'data':render_error_screen(error)}
-
-        if len(decoded_json['results']) == 0:
-            error = "Response from Application Server: No records found."
-            return {'result':0, 'data':render_error_screen(error)}
-
-    # Need to check if there was another error.  Will have to look at the othe web page to find what it's doing.
-    # if 0 == 1:
-    #     pass
-    # else:   
-    #     error = "Application Server Failure: We did not receive a proper response from the application server.  Status Code != 200: " + result.text
-    #     return render_error_screen(error)
-
-    return {'result':1, 'data':decoded_json['results']}
-
-@app.route('/edit_job/<job_id>/')
-def edit_job(job_id):
-    
-    url = 'http://{0}:{1}/edit_job/{2}/'.format(app_addr, app_port, job_id)
-
-    title = "Edit Job"
-
-    data = open_url(url)
-    if data['result'] == 0:
-        return data['data']
-
-    else:
-        records = data['data']
-        html = table_header()
-        html += render_template('show_open_jobs.html', title=title, records=records)
-        html += table_footer()
-
-    return html
-
 @app.route('/')
 def default():
 
@@ -76,34 +31,6 @@ def default():
         html += render_template('show_open_jobs.html', title=title, records=records)
         html += table_footer()
 
-    return html
-
-def get_header_graphic():
-    """
-    Should be included on all screens, pics a rangome graphic for the top of the screen
-    :return: url_for to the graphic for the header. 
-    """
-    header_graphic_file = header_graphic_files[random.randint(0, len(header_graphic_files)-1)]
-    return url_for('static', filename=header_graphic_file)
-
-def get_style_link():
-    return url_for('static', filename=style_file)
-
-@app.route('/login', methods=['GET'])
-def login_get():
-
-    html = base_menu()
-    html += render_template('login.html')
-
-    return html
-
-def table_header():
-    """
-    Should be included on all table based screens - includes the base menu
-    :return: html pages as rendered html
-    """
-    html = base_menu()
-    html += render_template('table_header.html')
     return html
 
 def base_menu():
@@ -131,6 +58,60 @@ def render_error_screen(error):
     html = base_menu()
     html += render_template('error.html',
                             error=error)
+    return html
+
+def get_header_graphic():
+    """
+    Should be included on all screens, pics a rangome graphic for the top of the screen
+    :return: url_for to the graphic for the header. 
+    """
+    header_graphic_file = header_graphic_files[random.randint(0, len(header_graphic_files)-1)]
+    return url_for('static', filename=header_graphic_file)
+
+def table_header():
+    """
+    Should be included on all table based screens - includes the base menu
+    :return: html pages as rendered html
+    """
+    html = base_menu()
+    html += render_template('table_header.html')
+    return html
+
+def get_style_link():
+    return url_for('static', filename=style_file)
+
+def open_url(url):
+    try: 
+        result = requests.get(url)
+    except:
+        error = "Application Server Failure: Not able to communicate with Application Server at {0} ".format(app_addr)
+        return {'result':0, 'data':render_error_screen(error)}
+
+    if (result.status_code == 200):
+        decoded_json = json.loads(result.text)
+        if decoded_json['status']== 'FAIL':
+            error = "Database Failure: Response from Application Server: " + decoded_json['results']
+            return {'result':0, 'data':render_error_screen(error)}
+
+        if len(decoded_json['results']) == 0:
+            error = "Response from Application Server: No records found."
+            return {'result':0, 'data':render_error_screen(error)}
+
+    # Need to check if there was another error.  Will have to look at the othe web page to find what it's doing.
+    # if 0 == 1:
+    #     pass
+    # else:   
+    #     error = "Application Server Failure: We did not receive a proper response from the application server.  Status Code != 200: " + result.text
+    #     return render_error_screen(error)
+
+    return {'result':1, 'data':decoded_json['results']}
+
+@app.route('/login', methods=['GET'])
+def login_get():
+
+    html = base_menu()
+    html += render_template('login.html')
+
     return html
 
 @app.route('/login', methods=['POST'])
@@ -190,6 +171,73 @@ def add_new_job():
     
     print formValues
     return redirect('/server_info', code=303)
+
+@app.route('/edit_job/<job_id>/')
+def edit_job(job_id):
+    
+    url = 'http://{0}:{1}/edit_job/{2}/'.format(app_addr, app_port, job_id)
+
+    title = "Edit Job"
+
+    data = open_url(url)
+    if data['result'] == 0:
+        return data['data']
+
+    else:
+        records = data['data']
+        html = table_header()
+        html += render_template('show_open_jobs.html', title=title, records=records)
+        html += table_footer()
+
+    return html
+
+@app.route('/new_gadget', methods=['GET'])
+def new_gadget():
+    """
+    Render entry page for a new job
+    :return: html pages as rendered html
+    """
+
+    html = base_menu()
+    html += render_template('enter_new_gadget.html')
+    return html
+
+@app.route('/add_new_gadget', methods=['POST'])
+def add_new_gadget():
+    """
+    Gather data from form post and post information to database
+    :return: html pages as rendered html
+    """
+    time_start = time.time()
+    if request.form["button"] == "cancel":
+        return redirect('/', code=303)
+
+    formValues = {}
+    formValues["type"] = request.form['type']
+
+    #  Look for missing items and show an error screen if needed
+    for k, v in formValues.iteritems():
+        if v == "":
+            return render_error_screen("You must specify all of the '*' values.")
+
+    # Add the rest to values that are optional
+    formValues["name"] = request.form['name']
+    formValues["wrating"] = request.form['wrating']
+    formValues["notes"] = request.form['notes']
+    # formValues[""] = request.form['']
+    
+    print (formValues)
+
+    message = "Gadget added of type: {}".format(formValues["type"])
+    if formValues["name"] != "":
+        message += " named: {}".format(formValues["name"])
+
+    html = table_header()
+    html += render_template('add_record.html', thecolor="green", header="Success", message=message)
+    html += table_footer()
+
+    # print 'Time to complete posting of new gadget: ', time.time() - time_start
+    return html
 
 @app.route('/new_person', methods=['GET'])
 def new_person():
