@@ -220,22 +220,23 @@ def add_new_gadget():
         if v == "":
             return render_error_screen("You must specify all of the '*' values.")
 
-    print (request.form)
-
     # Add the rest to values that are optional
-    # formValues["contact"] = request.form['contact']
-    # formValues["email"] = request.form['email']
-    # formValues["notes"] = request.form['notes']
+    formValues["name"] = request.form['name']
+    formValues["wrating"] = request.form['wrating']
+    formValues["notes"] = request.form['notes']
     # formValues[""] = request.form['']
     
+    print (formValues)
 
-    message = "Gadget Added: {}".format(formValues["type"])
+    message = "Gadget added of type: {}".format(formValues["type"])
+    if formValues["name"] != "":
+        message += " named: {}".format(formValues["name"])
 
     html = table_header()
     html += render_template('add_record.html', thecolor="green", header="Success", message=message)
     html += table_footer()
 
-    print 'Time to complete posting of new gadget: ', time.time() - time_start
+    # print 'Time to complete posting of new gadget: ', time.time() - time_start
     return html
 
 @app.route('/new_person', methods=['GET'])
