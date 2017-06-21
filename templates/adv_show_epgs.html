@@ -1,0 +1,40 @@
+<h1 class="ReportTitle">TEST - Endpoint Groups</h1>
+    <body>
+        <div class="container">
+
+        <table border="0" cellspacing="5" cellpadding="5">
+            <tbody>
+            </tbody>
+        </table>
+        </table>
+
+        <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+            <th>Tenant</th>
+            <th>Application Profile</th>
+            <th>EPG</th>
+            </tr>
+        </thead>
+ 
+        <tfoot>
+            <tr>
+            <th>Tenant</th>
+            <th>Application Profile</th>
+            <th>EPG</th>
+            </tr>
+        </tfoot>
+ 
+        <tbody>
+        {% for record in records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    </div>
+
